@@ -54,11 +54,14 @@ If you have Git installed:
 3. Run:
 
 ```bash
-git clone https://github.com/EarthNetOrg/social-resilience-abm-julia.git```
+git clone https://github.com/EarthNetOrg/social-resilience-abm-julia.git
+```
 
 4. Enter the new directory:
+5. 
 ```bash
-    cd social-resilience-abm-julia```
+    cd social-resilience-abm-julia
+```
 
 
 ##### Option B: Download ZIP
@@ -71,7 +74,9 @@ git clone https://github.com/EarthNetOrg/social-resilience-abm-julia.git```
 #### 3.1. Launch Julia
 - On macOS or Windows, you can open Terminal (macOS) or Command Prompt/Powershell (Windows), navigate to your project folder, and type:
 
+```bash
     julia
+```
 
 Then press Enter to start the Julia REPL (Read-Eval-Print Loop).
 
@@ -80,33 +85,42 @@ Then press Enter to start the Julia REPL (Read-Eval-Print Loop).
 #### 3.2. Pkg Mode and Environment Setup
 1. Once you’re in the Julia REPL, you’ll see a prompt like:
 
+```bash
     julia>
-
+```
 
 2. Press the ] key to enter “Pkg mode” — the prompt will change to something like:
 
+```bash
     (@v1.9) pkg>
+```
 
 or (v1.x) pkg> depending on your Julia version.
 
 3. Activate the project environment (optional but recommended). If your repo has a Project.toml file, you can do:
 
+```bash
      (v1.x) pkg> activate .
+```
 
 This tells Julia to treat your local folder as a dedicated environment. If a Project.toml is included with the repository, you can then run instantiate:
 
 4.	Install or instantiate your dependencies:
 - If the repository includes Project.toml and Manifest.toml, you can do:
 
+```bash
      (YourProjectName) pkg> instantiate
+```
 
 This automatically installs all needed packages in the correct versions.
 
 - If you do not have a pre-defined Project.toml, you can manually add the packages:
 
+```bash
    (v1.x) pkg> add Agents
    (v1.x) pkg> add Plots
    (v1.x) pkg> add InteractiveDynamics
+```
 
 (The last two are optional if you want plotting and interactive visualization.)
 
@@ -128,40 +142,47 @@ There are two typical approaches:
 #### 5.1. Approach A: Directly in the REPL
 1.	Navigate to your project folder in the terminal and launch Julia:
 
+```bash
      cd path/to/social-resilience-abm-julia
      julia
-
+```
 
 2.	Activate the environment (optional but recommended):
 
+```bash
      julia> ]
       (v1.x) pkg> activate .
       (v1.x) pkg> backspace
+```
 
 3.	Load the model file:
 
+```bash
 julia> include("resilience_model.jl")
-
+```
 
 4.	Run the demonstration function (e.g., run_resilience_model()), or manually create and step the model:
 
+```bash
      julia> run_resilience_model()
+```
 
 This will typically run for 100 steps and print some output like:
 
 After 100 steps, total waste in environment = 1234.56
 
 #### 5.2. Approach B: Using VSCode’s Julia Extensions
-	1.	Open the folder in VSCode.
-	2.	Install the Julia extension if you haven’t already.
-	3.	Open the resilience_model.jl file and look for the “play” button or “Run” button near each function.
-	4.	You can highlight lines and press Shift + Enter to send them to the Julia REPL at the bottom.
-	5.	Once all code is loaded, call the final function (e.g. run_resilience_model()) in the REPL.
+1. Open the folder in VSCode.
+2. Install the Julia extension if you haven’t already.
+3. Open the resilience_model.jl file and look for the “play” button or “Run” button near each function.
+4. You can highlight lines and press Shift + Enter to send them to the Julia REPL at the bottom.
+5. Once all code is loaded, call the final function (e.g. run_resilience_model()) in the REPL.
 
 ### 6. Customizing Parameters
 
 Depending on how the code is written, you might see a function like:
 
+```bash
 model = init_model(
     width = 20,
     height = 20,
@@ -175,48 +196,56 @@ model = init_model(
     initial_dynamic_store = 50.0,
     initial_waste_store = 0.0
 )
+```
 
 You can tweak these keyword arguments to explore different behaviors, for example:
-	•	rate_of_dynamic_gather: Increase if you want agents to gather dynamic energy more quickly.
-	•	percent_waste_generated: Increase if you want the system to produce more waste per resource gathered.
-	•	dynamic_vs_static_preference: If 0.8, for instance, the agent strongly prefers dynamic energy.
-	•	waste_impact_rate: Affects how much energy is expelled back to environment each step, based on the local waste level.
+- rate_of_dynamic_gather: Increase if you want agents to gather dynamic energy more quickly.
+- percent_waste_generated: Increase if you want the system to produce more waste per resource gathered.
+- dynamic_vs_static_preference: If 0.8, for instance, the agent strongly prefers dynamic energy.
+- waste_impact_rate: Affects how much energy is expelled back to environment each step, based on the local waste level.
 
 After customizing these parameters, you can run:
 
+```bash
 model = init_model(30, 30, 100; rate_of_dynamic_gather=2.0, ...)
 run!(model, agent_step!, model_step!, 200)
+```
 
 (Here, run! is Agents.jl’s function that steps the model a certain number of times. The code might differ slightly depending on your exact script.)
 
 ### 7. Monitoring and Data Collection
-	1.	Basic Logging: After each run, you might see console output of total waste or other aggregates.
-	2.	DataCollector: In Agents.jl, you can use:
+1. Basic Logging: After each run, you might see console output of total waste or other aggregates.
+2. DataCollector: In Agents.jl, you can use:
 
 using Agents
 
+```bash
 mdata = Dict{Symbol, Vector{Float64}}()
 add_model_measure!(model, mdata, :total_waste, total_waste)
 run!(model, agent_step!, model_step!, 100; mdata = mdata)
 
 # Now mdata[:total_waste] is an array of total_waste per step
+```
 
+3. Plots: You can visualize the data with Plots.jl. For example:
 
-	3.	Plots: You can visualize the data with Plots.jl. For example:
-
+```bash
 using Plots
 plot(mdata[:total_waste], ylabel="Total Waste", xlabel="Step")
+```
 
-8. Visualizing the Grid (Optional)
+### 8. Visualizing the Grid (Optional)
 
 If you’d like to see an actual grid or interactive environment:
-	1.	Install InteractiveDynamics.jl:
+1. Install InteractiveDynamics.jl:
 
+```bash
 (v1.x) pkg> add InteractiveDynamics
+```
 
+2. Then you can do something like:
 
-	2.	Then you can do something like:
-
+```bash
 using InteractiveDynamics
 
 abm_plot(
@@ -226,28 +255,28 @@ abm_plot(
     am = :circle,                # agent shape
     am_parallel = true           # optional, for parallel processing
 )
+```
 
+3. You might also create a function for colorizing patches based on waste or dynamic_energy. Check the InteractiveDynamics documentation for more details on advanced usage.
 
-	3.	You might also create a function for colorizing patches based on waste or dynamic_energy. Check the InteractiveDynamics documentation for more details on advanced usage.
+### 9. Troubleshooting
+- “Command Not Found: julia”: Make sure Julia is on your PATH or start it directly by double-clicking the Julia app.
+- Package Installation Errors: If you see “No project found,” ensure you used ] activate . in the correct folder or add the needed packages individually.
+   Outdated Julia Version: Agents.jl typically requires Julia 1.6 or newer. Update your Julia version if necessary.
 
-9. Troubleshooting
-	•	“Command Not Found: julia”: Make sure Julia is on your PATH or start it directly by double-clicking the Julia app.
-	•	Package Installation Errors: If you see “No project found,” ensure you used ] activate . in the correct folder or add the needed packages individually.
-	•	Outdated Julia Version: Agents.jl typically requires Julia 1.6 or newer. Update your Julia version if necessary.
+### 10. Next Steps
+- Experiment with different parameter values to see how waste accumulates or how quickly agents run out of resources.
+- Extend agent behavior: for example, add rules for agent “death” if their static store hits zero, or for “reproduction” if they have a surplus of energy.
+- Collect data systematically across many runs (e.g. with DrWatson.jl or your own scripts) and analyze emergent patterns.
+- Visualize outputs with line plots, heatmaps, or interactive dashboards.
 
-10. Next Steps
-	•	Experiment with different parameter values to see how waste accumulates or how quickly agents run out of resources.
-	•	Extend agent behavior: for example, add rules for agent “death” if their static store hits zero, or for “reproduction” if they have a surplus of energy.
-	•	Collect data systematically across many runs (e.g. with DrWatson.jl or your own scripts) and analyze emergent patterns.
-	•	Visualize outputs with line plots, heatmaps, or interactive dashboards.
-
-Done!
+### Done!
 
 You now have a detailed blueprint for:
-	1.	Installing Julia.
-	2.	Acquiring the repository (via Git or ZIP).
-	3.	Installing the necessary Julia packages.
-	4.	Running the ABM in either a terminal-based REPL or VSCode.
-	5.	Customizing model parameters and collecting data.
+1. Installing Julia.
+2. Acquiring the repository (via Git or ZIP).
+3. Installing the necessary Julia packages.
+4. Running the ABM in either a terminal-based REPL or VSCode.
+5. Customizing model parameters and collecting data.
 
 With these steps, you should be able to explore, experiment with, and extend the Social Resilience ABM in Agents.jl on your local system. Happy modeling!
