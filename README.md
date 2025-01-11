@@ -39,7 +39,7 @@ Below is a more detailed, step-by-step guide on setting up and running the Socia
 4. Verify your installation by opening a terminal (or command prompt) and typing:
 
 ```bash
-julia --version```
+julia --version
 
 You should see a version number (e.g., julia version 1.9.2).
 
