@@ -40,6 +40,7 @@ Below is a more detailed, step-by-step guide on setting up and running the Socia
 
 ```bash
 julia --version
+```
 
 You should see a version number (e.g., julia version 1.9.2).
 
