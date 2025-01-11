@@ -30,16 +30,16 @@ Below is a more detailed, step-by-step guide on setting up and running the Socia
 ### Detailed Setup and Usage Instructions
 
 #### 1. **Install Julia**
-	1.	Go to the official Julia downloads page:
-https://julialang.org/downloads/
-	2.	Download the appropriate installer for your operating system (macOS, Windows, or Linux).
-	3.	Follow the on-screen instructions to install Julia.
-	•	On macOS, you typically drag the Julia app into your Applications folder or another preferred location.
-	•	On Windows, you typically run an .exe installer.
-	•	On Linux, you can extract a .tar.gz and place it in a convenient folder (or install via a package manager if available).
-	4.	Verify your installation by opening a terminal (or command prompt) and typing:
+1. Go to the official Julia downloads page: https://julialang.org/downloads/
+2. Download the appropriate installer for your operating system (macOS, Windows, or Linux).
+3. Follow the on-screen instructions to install Julia.
+- On macOS, you typically drag the Julia app into your Applications folder or another preferred location.
+- On Windows, you typically run an .exe installer.
+- On Linux, you can extract a .tar.gz and place it in a convenient folder (or install via a package manager if available).
+4. Verify your installation by opening a terminal (or command prompt) and typing:
 
-julia --version
+```bash
+julia --version```
 
 You should see a version number (e.g., julia version 1.9.2).
 
@@ -48,22 +48,22 @@ You should see a version number (e.g., julia version 1.9.2).
 ##### Option A: Git Clone (Recommended)
 
 If you have Git installed:
-1.	Open a terminal or command prompt.
-2.	Navigate (cd) to the directory where you want to store this project, for example Documents/GitHub/.
-3.	Run:
+1. Open a terminal or command prompt.
+2. Navigate (cd) to the directory where you want to store this project, for example Documents/GitHub/.
+3. Run:
 
-    git clone https://github.com/EarthNetOrg/social-resilience-abm-julia.git
+```bash
+git clone https://github.com/EarthNetOrg/social-resilience-abm-julia.git```
 
-
-4.	Enter the new directory:
-
-    cd social-resilience-abm-julia
+4. Enter the new directory:
+```bash
+    cd social-resilience-abm-julia```
 
 
 ##### Option B: Download ZIP
-	1.	On the GitHub page of the repository, click “Code” → “Download ZIP”.
-	2.	Unzip the file to a convenient location.
-	3.	Open a terminal or command prompt and navigate (cd) into the unzipped folder.
+1. On the GitHub page of the repository, click “Code” → “Download ZIP”.
+2. Unzip the file to a convenient location.
+3. Open a terminal or command prompt and navigate (cd) into the unzipped folder.
 
 ### 3. Open Julia and Install Dependencies
 
